@@ -45,7 +45,7 @@ def readme():
     with open("README.rst") as f:
         return f.read()
 
-setup(name = "boto",
+setup(name = "boto_mws",
       version = __version__,
       description = "Amazon Web Services Library",
       long_description = readme(),
