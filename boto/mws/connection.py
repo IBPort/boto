@@ -54,7 +54,16 @@ api_version_path = {
     'OffAmazonPayments': ('2013-01-01', 'SellerId',
                           '/OffAmazonPayments/2013-01-01'),
 }
-content_md5 = lambda c: encodebytes(hashlib.md5(c).digest()).strip().decode('utf-8')
+def content_md5(c):
+    if type(c) is not bytes:
+        c = c.encode('utf-8')
+
+    c_md5 = encodebytes(hashlib.md5(c).digest()).strip()
+    if type(c_md5) is bytes:
+        return c_md5.decode()
+    else:
+        return c_md5
+
 decorated_attrs = ('action', 'response', 'section',
                    'quota', 'restore', 'version')
 api_call_map = {}
